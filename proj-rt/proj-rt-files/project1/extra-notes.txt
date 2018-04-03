@@ -1,0 +1,12 @@
+Implemented anit-aliasing, by splitting the cell into 4 further pieces.
+Source code:
+void Render_World::Render()
+{
+  int n = 4;
+  for(int j=0;j<camera.number_pixels[1];j++)
+  for(int i=0;i<camera.number_pixels[0];i++)
+  for(int p=0;p<n; p++ )
+  for(int q=0;q<n; q++ )
+  Render_Pixel(ivec2(i+p/n,j+q/n), n);
+}
+Every cell has 4 rays passing through it now, compared to the single ray earlier. This increases the computation time of the program, taking significantly longer to execute.
